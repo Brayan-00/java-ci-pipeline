@@ -1,12 +1,6 @@
 package test;
-
 import main.calculator;
-
-
-/** JUnit */
-import org.junit.Before;
-import org.junit.Test;
-/** For my code */
+import org.junit.*;
 import java.util.*;
 
 import static org.junit.Assert.assertEquals;
@@ -15,6 +9,7 @@ public class test {
 
     @Before
     public void init() {
+
         calc = new calculator();
     }
     @Test
@@ -74,14 +69,6 @@ public class test {
     private int random() {
         return R.nextInt(MAX) + 1;
     }
-    public static void main(String[] args) {
-        test tst = new test();
-        tst.testAdd();
-        tst.testDivide();
-        tst.testMinus();
-        tst.testMultiply();
-    }
-
 
 }
 
