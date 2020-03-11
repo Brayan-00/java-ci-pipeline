@@ -1,4 +1,4 @@
 language:
   java
-install:
-  ant dist
+script:
+  - ant dist
