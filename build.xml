@@ -1,11 +1,20 @@
-<project name="calculator" default="dist" basedir="." >
+<project name="calculator" default="dist" basedir="." xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="antlib:org.sonar.ant ">
     <description>
         Builds a Jar file to pack this artifact
     </description>
     <property name="src" location="src"/>
     <property name="build" location="build"/>
     <property name="dist" location="dist"/>
+    <property name="test" location="test"/>
+    <property name="buildtest" location="buildtest"/>
+    <property name="tst" location="tst"/>
     <property name="version" value="1.0"/>
+    <property name="sonar.organization" value="calculator"/>
+    <property name="sonar.projectKey" value="Mycalculator"/>
+    <property name="sonar.sources" value="."/>
+    <property name="sonar.host.url" value="https://sonarcloud.io"/>
+    <property name="sonar.login" value="beb494a1ace30e85571adf834eec44eab34206c3"/>
+
 
     <target name="init">
         <tstamp/>
@@ -25,6 +34,22 @@
     <target name="clean" description="clean up">
         <delete dir="${build}"/>
         <delete dir="${dist}"/>
+    </target>
+    <target name = "inittest" description="make directory for tests jar">
+        <tstamp/>
+        <mkdir dir = "${test}"/>
+    </target>
+    <target name = "compiletest" depends="inittest" description="compiles the test">
+        <javac srcdir="${test}" destdir="${buildtest}"/>
+    </target>
+    <target name = "test" depends="compiletest" description="generate the tests">
+        <buildnumber/>
+        <mkdir dir = "${tst}"/>
+        <jar destfile="${tst}/calculator-${version}.${build.number}.jar" basedir="$buildtest"/>
+    </target>
+    <target name="cleantest" description="clean up">
+        <delete dir="${buildtest}"/>
+        <delete dir="${tst}"/>
     </target>
 
 </project>
